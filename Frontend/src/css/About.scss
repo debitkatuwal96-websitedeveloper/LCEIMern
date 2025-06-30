@@ -1,0 +1,309 @@
+// Use base styles from Home.scss instead of @import
+@use './Home.scss' as home;
+
+// About Page Specific Styles
+.about-page {
+  & .about-hero {
+    position: relative;
+    height: 60vh;
+    min-height: 400px;
+    background: url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
+    background-size: cover;
+    @include home.flex-center;
+    
+    & .hero-overlay {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    
+    & .hero-content {
+      & .hero-text {
+        & h1 {
+          font-size: 2.8rem;
+          
+          @media (min-width: 768px) {
+            font-size: 3.5rem;
+          }
+        }
+        
+        & .subtext {
+          font-size: 1.3rem;
+          max-width: 700px;
+          margin: 0 auto 2rem;
+        }
+      }
+    }
+  }
+
+  // Our Story Section
+  & .our-story {
+    @include home.section-padding;
+    
+    & .story-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      
+      @media (min-width: 992px) {
+        flex-direction: row;
+        align-items: center;
+        gap: 4rem;
+      }
+      
+      & .story-text {
+        flex: 1;
+        
+        & h2 {
+          font-size: 2rem;
+          color: home.$dark-color;
+          margin-bottom: 1.5rem;
+        }
+        
+        & p {
+          margin-bottom: 1.5rem;
+          font-size: 1.1rem;
+          line-height: 1.7;
+        }
+      }
+      
+      & .story-image {
+        flex: 1;
+        border-radius: 0.5rem;
+        overflow: hidden;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        
+        & img {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
+      }
+    }
+  }
+
+  // Mission Section
+  & .mission-section {
+    @include home.section-padding;
+    background-color: home.$light-color;
+    
+    & .principles-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      
+      @media (min-width: 768px) {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      
+      & .principle-card {
+        background-color: white;
+        border-radius: 0.5rem;
+        padding: 2rem;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease;
+        
+        &:hover {
+          transform: translateY(-5px);
+        }
+        
+        & .principle-icon {
+          font-size: 2.5rem;
+          color: home.$primary-color;
+          margin-bottom: 1.5rem;
+        }
+        
+        & h3 {
+          font-size: 1.5rem;
+          margin-bottom: 1rem;
+          color: home.$dark-color;
+        }
+        
+        & p {
+          color: home.$text-light;
+          line-height: 1.7;
+        }
+        
+        & .values-list {
+          text-align: left;
+          list-style-type: none;
+          padding-left: 0;
+          
+          & li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: home.$text-light;
+            
+            &::before {
+              content: "•";
+              color: home.$primary-color;
+              font-size: 1.5rem;
+              position: absolute;
+              left: 0;
+              top: -0.25rem;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Video Section
+  & .video-section {
+    @include home.section-padding;
+    
+    & .video-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+      
+      & .video-container {
+        position: relative;
+        padding-bottom: 56.25%; // 16:9 aspect ratio
+        height: 0;
+        overflow: hidden;
+        border-radius: 0.5rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        
+        & iframe {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          border: none;
+        }
+      }
+    }
+  }
+
+  // Team Section
+  & .team-section {
+    @include home.section-padding;
+    background-color: home.$light-color;
+    
+    & .team-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      
+      @media (min-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      @media (min-width: 992px) {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      
+      & .team-card {
+        background-color: white;
+        border-radius: 0.5rem;
+        padding: 2rem;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        
+        & .team-image {
+          width: 120px;
+          height: 120px;
+          border-radius: 50%;
+          overflow: hidden;
+          margin: 0 auto 1.5rem;
+          border: 3px solid home.$primary-color;
+          
+          & img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+        
+        & h3 {
+          font-size: 1.3rem;
+          margin-bottom: 0.5rem;
+          color: home.$dark-color;
+        }
+        
+        & .role {
+          color: home.$primary-color;
+          font-weight: 600;
+          margin-bottom: 1rem;
+        }
+        
+        & .bio {
+          color: home.$text-light;
+          line-height: 1.6;
+        }
+      }
+    }
+  }
+
+  // Achievements Section
+  & .achievements-section {
+    @include home.section-padding;
+    
+    & .milestones-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      
+      @media (min-width: 768px) {
+        grid-template-columns: repeat(4, 1fr);
+      }
+      
+      & .milestone-card {
+        background-color: white;
+        border-radius: 0.5rem;
+        padding: 2rem 1rem;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        
+        & .milestone-icon {
+          font-size: 2rem;
+          color: home.$primary-color;
+          margin-bottom: 1rem;
+        }
+        
+        & .milestone-number {
+          font-size: 2rem;
+          font-weight: 700;
+          color: home.$dark-color;
+          margin-bottom: 0.5rem;
+        }
+        
+        & .milestone-text {
+          color: home.$text-light;
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+
+  // About CTA
+  & .about-cta {
+    @include home.section-padding;
+    background-color: home.$primary-color;
+    color: white;
+    text-align: center;
+    
+    & .cta-content {
+      max-width: 800px;
+      margin: 0 auto;
+      
+      & h2 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+        
+        @media (min-width: 768px) {
+          font-size: 2.5rem;
+        }
+      }
+      
+      & .cta-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+      }
+    }
+  }
+}

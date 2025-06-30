@@ -1,0 +1,432 @@
+// Variables
+$primary-color: #2563eb;
+$secondary-color: #1e40af;
+$accent-color: #3b82f6;
+$dark-color: #1f2937;
+$light-color: #f9fafb;
+$text-color: #374151;
+$text-light: #6b7280;
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin section-padding {
+  padding: 5rem 1rem;
+  
+  @media (min-width: 768px) {
+    padding: 7rem 2rem;
+  }
+}
+
+// Base Styles
+.home-page {
+  font-family: 'Inter', sans-serif;
+  color: $text-color;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  
+  & h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: $dark-color;
+    margin-bottom: 0.5rem;
+    
+    @media (min-width: 768px) {
+      font-size: 2.5rem;
+    }
+  }
+  
+  & .section-subtitle {
+    color: $text-light;
+    font-size: 1.1rem;
+  }
+}
+
+.button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.cta-button {
+  @extend .button;
+  background-color: $primary-color;
+  color: white;
+  border: none;
+  
+  &:hover {
+    background-color: $secondary-color;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.secondary-button {
+  @extend .button;
+  background-color: transparent;
+  color: $primary-color;
+  border: 2px solid $primary-color;
+  
+  &:hover {
+    background-color: rgba($primary-color, 0.1);
+  }
+}
+
+// Hero Section
+.hero-section {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  max-height: 800px;
+  background: url('https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
+  background-size: cover;
+  @include flex-center;
+  
+  & .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+  
+  & .hero-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    padding: 0 1rem;
+    text-align: center;
+    color: white;
+    
+    & .hero-text {
+      max-width: 800px;
+      margin: 0 auto;
+      
+      & h1 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+        
+        @media (min-width: 768px) {
+          font-size: 3.5rem;
+        }
+      }
+      
+      & .subtext {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+        
+        @media (min-width: 768px) {
+          font-size: 1.4rem;
+        }
+      }
+    }
+  }
+}
+
+// About Section
+.about-section {
+  @include section-padding;
+  background-color: $light-color;
+  
+  & .about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    
+    @media (min-width: 992px) {
+      flex-direction: row;
+      align-items: center;
+      gap: 4rem;
+    }
+    
+    & .about-text {
+      flex: 1;
+      
+      & p {
+        margin-bottom: 1.5rem;
+        font-size: 1.1rem;
+      }
+      
+      & .mission-vision {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-top: 2rem;
+        
+        @media (min-width: 768px) {
+          grid-template-columns: 1fr 1fr;
+        }
+        
+        & .mv-item {
+          & h3 {
+            font-size: 1.25rem;
+            color: $dark-color;
+            margin-bottom: 0.5rem;
+          }
+          
+          & p {
+            font-size: 1rem;
+            color: $text-light;
+          }
+        }
+      }
+    }
+    
+    & .about-image {
+      flex: 1;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      
+      & img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+    }
+  }
+}
+
+// Courses Section
+.courses-section {
+  @include section-padding;
+  
+  & .courses-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @media (min-width: 992px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    
+    & .course-card {
+      background-color: white;
+      border-radius: 0.5rem;
+      padding: 2rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      }
+      
+      & .course-icon {
+        font-size: 2.5rem;
+        color: $primary-color;
+        margin-bottom: 1rem;
+      }
+      
+      & h3 {
+        font-size: 1.25rem;
+        margin-bottom: 0.75rem;
+        color: $dark-color;
+      }
+      
+      & p {
+        color: $text-light;
+        margin-bottom: 1.5rem;
+      }
+      
+      & .learn-more-btn {
+        @extend .button;
+        background-color: transparent;
+        color: $primary-color;
+        padding: 0;
+        font-weight: 600;
+        
+        &:hover {
+          color: $secondary-color;
+        }
+      }
+    }
+  }
+  
+  & .view-all {
+    text-align: center;
+    margin-top: 3rem;
+  }
+}
+
+// Why Choose Us Section
+.why-choose-section {
+  @include section-padding;
+  background-color: $light-color;
+  
+  & .features-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @media (min-width: 992px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    
+    & .feature-card {
+      background-color: white;
+      border-radius: 0.5rem;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      
+      & .feature-icon {
+        font-size: 2.5rem;
+        color: $primary-color;
+        margin-bottom: 1.5rem;
+      }
+      
+      & h3 {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+        color: $dark-color;
+      }
+      
+      & p {
+        color: $text-light;
+      }
+    }
+  }
+}
+
+// Testimonials Section
+.testimonials-section {
+  @include section-padding;
+  
+  & .testimonials-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    & .testimonial-card {
+      background-color: white;
+      border-radius: 0.5rem;
+      padding: 2rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      
+      & .testimonial-content {
+        & .quote {
+          font-size: 1.1rem;
+          font-style: italic;
+          margin-bottom: 1.5rem;
+          color: $text-color;
+        }
+        
+        & .student-info {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          
+          & img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+          
+          & h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+            color: $dark-color;
+          }
+          
+          & p {
+            color: $text-light;
+            font-size: 0.9rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+// CTA Section
+.cta-section {
+  @include section-padding;
+  background-color: $primary-color;
+  color: white;
+  text-align: center;
+  
+  & .cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+    
+    & h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      
+      @media (min-width: 768px) {
+        font-size: 2.5rem;
+      }
+    }
+    
+    & p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+    
+    & .cta-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      
+      & .cta-button {
+        background-color: white;
+        color: $primary-color;
+        
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.9);
+        }
+      }
+      
+      & .secondary-button {
+        color: white;
+        border-color: white;
+        
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.1);
+        }
+      }
+    }
+  }
+}

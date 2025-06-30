@@ -1,0 +1,38 @@
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background-color: #fff; /* or your navbar color */
+    position: absolute;
+    top: 60px; /* adjust as needed */
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+
+  .nav-links.mobile-menu-open {
+    display: flex;
+  }
+
+  .mobile-menu-btn {
+    display: block;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+  }
+}
+
+/* Desktop fallback */
+@media (min-width: 769px) {
+  .mobile-menu-btn {
+    display: none;
+  }
+}
