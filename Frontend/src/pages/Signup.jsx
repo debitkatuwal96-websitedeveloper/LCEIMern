@@ -39,7 +39,7 @@ function Signup() {
     };
 
     try {
-     const result = await axios.post('http://localhost:5000/api/signup', formData);
+     const result = await axios.post('https://lceimern.onrender.com/api/signup', formData);
 
       console.log('Signup successful:', result.data);
       alert("Signup successful!");
