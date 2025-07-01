@@ -15,32 +15,60 @@ const { login } = useAuth();
 const [password, setPassword] = useState('');
 const [error, setError] = useState('');
 const navigate = useNavigate();
+const [loading, setLoading] = useState(false);
+
+
+// const handleSubmit = async (e) => {
+//   e.preventDefault();
+//    console.log('Form submitted with:', { email, password });
+//   try {
+//     const response = await axios.post('https://lceimern.onrender.com/api/login', {
+//       email,
+//       password
+//     });
+// console.log('Response received:', response.data); 
+    
+
+//     if (response.data.success) {
+//       alert('Login successful');
+//         login({ email });
+//       // navigate('/dashboard'); // Change this route to your dashboard route
+//        navigate('/');
+//     } else {
+//       setError(response.data.message || 'Login failed');
+//     }
+//   } catch (err) {
+//     console.error(err);
+//       console.error('Error details:', err); 
+//     setError(err.response?.data?.message || 'Something went wrong');
+//   }
+// };
 
 const handleSubmit = async (e) => {
   e.preventDefault();
-   console.log('Form submitted with:', { email, password });
+  setLoading(true); // Start loading
+  setError('');
   try {
     const response = await axios.post('https://lceimern.onrender.com/api/login', {
       email,
-      password
+      password,
     });
-console.log('Response received:', response.data); 
-    
 
     if (response.data.success) {
       alert('Login successful');
-        login({ email });
-      // navigate('/dashboard'); // Change this route to your dashboard route
-       navigate('/');
+      login({ email });
+      navigate('/');
     } else {
       setError(response.data.message || 'Login failed');
     }
   } catch (err) {
     console.error(err);
-      console.error('Error details:', err); 
     setError(err.response?.data?.message || 'Something went wrong');
+  } finally {
+    setLoading(false); // Stop loading
   }
 };
+
 
 
   return (
@@ -131,7 +159,16 @@ console.log('Response received:', response.data);
               </Link>
             </div>
 
-            <button type="submit" className="login-button">Log In</button>
+            {/* <button type="submit" className="login-button">Log In</button> */}
+            <button type="submit" className="login-button" disabled={loading && (
+  <div className="loader-container">
+    <div className="loader"></div>
+  </div>
+)}
+>
+  {loading ? 'Logging in...' : 'Log In'}
+</button>
+
 
             <div className="social-login">
               <p>Or sign in with</p>

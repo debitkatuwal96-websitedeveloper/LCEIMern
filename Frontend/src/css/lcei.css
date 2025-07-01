@@ -4,6 +4,17 @@
   gap: 1rem;
 }
 
+/* style={{ color: '#2563EB' }} */
+
+.Suit{
+  color:#2563EB ;
+}
+
+.Suit:hover{
+color: #fff;
+background-color: #043aad;
+}
+
 @media (max-width: 768px) {
   .nav-links {
     display: none;

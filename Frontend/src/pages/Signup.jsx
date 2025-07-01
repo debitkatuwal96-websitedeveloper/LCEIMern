@@ -15,40 +15,79 @@ function Signup() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   if (password !== confirmPassword) {
+  //     alert("Passwords do not match!");
+  //     return;
+  //   }
+
+  //   if (!agreedToTerms) {
+  //     alert("You must agree to the terms.");
+  //     return;
+  //   }
+
+  //   const formData = {
+  //     firstName,
+  //     lastName,
+  //     email,
+  //     phone,
+  //     course,
+  //     password,
+  //   };
+
+  //   try {
+  //    const result = await axios.post('https://lceimern.onrender.com/api/signup', formData);
+
+  //     console.log('Signup successful:', result.data);
+  //     alert("Signup successful!");
+  //       navigate('/login');
+  //   } catch (error) {
+  //     console.error('Signup error:', error);
+  //     alert("Signup failed. Please try again.");
+  //   }
+  // };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    if (password !== confirmPassword) {
-      alert("Passwords do not match!");
-      return;
-    }
+  if (password !== confirmPassword) {
+    alert("Passwords do not match!");
+    return;
+  }
 
-    if (!agreedToTerms) {
-      alert("You must agree to the terms.");
-      return;
-    }
+  if (!agreedToTerms) {
+    alert("You must agree to the terms.");
+    return;
+  }
 
-    const formData = {
-      firstName,
-      lastName,
-      email,
-      phone,
-      course,
-      password,
-    };
-
-    try {
-     const result = await axios.post('https://lceimern.onrender.com/api/signup', formData);
-
-      console.log('Signup successful:', result.data);
-      alert("Signup successful!");
-        navigate('/login');
-    } catch (error) {
-      console.error('Signup error:', error);
-      alert("Signup failed. Please try again.");
-    }
+  const formData = {
+    firstName,
+    lastName,
+    email,
+    phone,
+    course,
+    password,
   };
+
+  try {
+    setLoading(true); // Start loading
+    const result = await axios.post('https://lceimern.onrender.com/api/signup', formData);
+    console.log('Signup successful:', result.data);
+    alert("Signup successful!");
+    navigate('/login');
+  } catch (error) {
+    console.error('Signup error:', error);
+    alert("Signup failed. Please try again.");
+  } finally {
+    setLoading(false); // Stop loading
+  }
+};
+
 
 
   return (
@@ -193,8 +232,15 @@ function Signup() {
                 <label htmlFor="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
               </div>
               
-              <button type="submit" className="signup-button">Create Account</button>
-              
+              {/* <button type="submit" className="signup-button">Create Account</button> */}
+              <button type="submit" className="signup-button" disabled={loading}>
+  {loading ? (
+    <div className="loader-btn"></div>
+  ) : (
+    "Create Account"
+  )}
+</button>
+
               <div className="login-link">
                 <p>Already have an account? <a href="/login">Log in</a></p>
               </div>

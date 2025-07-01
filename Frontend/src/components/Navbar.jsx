@@ -136,7 +136,7 @@ function Navbar() {
                        </>
                      ) : (
                        <>
-                         <Link to="/login" className="btn btn-outline" style={{ color: '#2563EB' }}>
+                         <Link to="/login" className="btn btn-outline Suit" >
                            Log In
                          </Link>
                          <Link to="/signup" className="btn btn-primary" style={{ color: '#fcfdfe' }}>
